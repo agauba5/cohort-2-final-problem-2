@@ -3,7 +3,6 @@ package edu.cnm.deepdive.springdatarestpeople.group;
 
 import edu.cnm.deepdive.springdatarestpeople.membership.Membership;
 import edu.cnm.deepdive.springdatarestpeople.person.Person;
-import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,13 +30,14 @@ public class Group {
   @Column(name = "id")
   private long id;
 
+  @Column(nullable = false, name =  "name")
   private String name;
 
   @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
   @Temporal(TemporalType.TIMESTAMP)
   private Date created;
 
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "group", cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
   private List<Membership> memberships = new LinkedList<>();
 
   @ManyToOne(fetch = FetchType.EAGER)
@@ -111,14 +111,4 @@ public class Group {
     this.person = person;
   }
 
-  /**
-   *
-   * creates an instance of the Group object
-   */
-  public static class InstanceCreator implements com.google.gson.InstanceCreator<Group> {
-    @Override
-    public Group createInstance(Type type) {
-      return new Group();
-    }
-  }
 }

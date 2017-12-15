@@ -12,6 +12,11 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(collectionResourceRel = "groups", path = "groups")
 public interface GroupRepository extends CrudRepository<Group, Long> {
 
-  List<Group> findByName(@Param("name") String name);
+  /**
+   *
+   * @param name
+   * @return
+   */
+  List<Group> findGroupByName(@Param("name") String name);
 
 }

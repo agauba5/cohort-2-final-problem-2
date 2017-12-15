@@ -2,7 +2,6 @@ package edu.cnm.deepdive.springdatarestpeople.person;
 
 import edu.cnm.deepdive.springdatarestpeople.group.Group;
 import edu.cnm.deepdive.springdatarestpeople.membership.Membership;
-import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,6 +26,7 @@ public class Person {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
+  @Column(nullable = false, name =  "name")
   private String name;
 
   @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -121,15 +121,5 @@ public class Person {
   }
 
 
-  /**
-   *
-   * creates an instance of the Person object
-   */
-  public static class InstanceCreator implements com.google.gson.InstanceCreator<Person> {
-    @Override
-    public Person createInstance(Type type) {
-      return new Person();
-    }
-  }
 }
 
