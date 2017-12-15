@@ -3,6 +3,7 @@ package edu.cnm.deepdive.springdatarestpeople.group;
 
 import edu.cnm.deepdive.springdatarestpeople.membership.Membership;
 import edu.cnm.deepdive.springdatarestpeople.person.Person;
+import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -108,5 +109,16 @@ public class Group {
    */
   public void setPerson(Person person) {
     this.person = person;
+  }
+
+  /**
+   *
+   * creates an instance of the Group object
+   */
+  public static class InstanceCreator implements com.google.gson.InstanceCreator<Group> {
+    @Override
+    public Group createInstance(Type type) {
+      return new Group();
+    }
   }
 }
